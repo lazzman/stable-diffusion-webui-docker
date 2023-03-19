@@ -37,7 +37,6 @@ jobs:
         push: true
         platforms: |
           linux/amd64
-          linux/arm64
         tags: |
           ${{ secrets.DOCKERHUB_USERNAME }}/stable-diffusion-webui-docker:latest${{ env.DOCKERFILE_SUFFIX }}
           ${{ secrets.DOCKERHUB_USERNAME }}/stable-diffusion-webui-docker:${{ env.RELEASE_DATE }}${{ env.DOCKERFILE_SUFFIX }}
