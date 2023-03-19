@@ -30,6 +30,7 @@ jobs:
       run: |
           echo "RELEASE_DATE=$(date +%y.%m.%d)" >> ${GITHUB_ENV}
           cp Dockerfile${DOCKERFILE_SUFFIX} Dockerfile
+	  sed -i 's/RUN cd stable-diffusion-webui && python launch.py --skip-torch-cuda-test/#&/g' Dockerfile
     - name: Build and push
       uses: docker/build-push-action@v4
       with:
