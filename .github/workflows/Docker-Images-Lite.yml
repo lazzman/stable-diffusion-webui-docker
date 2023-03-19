@@ -27,13 +27,14 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
     - name: Generate App Version
-      run: echo "RELEASE_DATE=$(date +%y.%m.%d)" >> ${GITHUB_ENV}
+      run: |
+          echo "RELEASE_DATE=$(date +%y.%m.%d)" >> ${GITHUB_ENV}
+          cp Dockerfile${DOCKERFILE_SUFFIX} Dockerfile
     - name: Build and push
       uses: docker/build-push-action@v4
       with:
         context: .
         push: true
-	file: Dockerfile${{ env.DOCKERFILE_SUFFIX }}
         platforms: |
           linux/amd64
           linux/arm64
