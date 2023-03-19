@@ -11,10 +11,14 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     env:
       ACTIONS_ALLOW_UNSECURE_COMMANDS: true
     steps:
+    - name: Remove unnecessary files
+      run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf "$AGENT_TOOLSDIRECTORY"
     - name: Checkout
       uses: actions/checkout@v3
     - name: Set up QEMU
